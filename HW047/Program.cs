@@ -1,12 +1,12 @@
 ﻿// Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
-Console.WriteLine("Введите количество строк массива:");
+Console.WriteLine("Введите количество строк в массиве:");
 bool isNumberLines = int.TryParse(Console.ReadLine(), out int lengthLine);
 if (!isNumberLines || lengthLine <= 1)
 {
     Console.WriteLine("Неверно!");
     return;
 }
-Console.WriteLine("Введите количество столбцов массива:");
+Console.WriteLine("Введите количество столбиков в массиве:");
 bool isNumberRows = int.TryParse(Console.ReadLine(), out int lengthRow);
 if (!isNumberRows || lengthRow <= 1)
 {
@@ -15,29 +15,29 @@ if (!isNumberRows || lengthRow <= 1)
 }
 int m = lengthLine;
 int n = lengthRow;
-int[,] CreateRandomIntArray(int m, int n)
-{
-   int[,] array = new int[m, n];
+double[,] arrayDouble = new double[m,n];
+void CreateRandomDoubleArray(int m, int n)
+{  
     Random random = new Random();
-    for (int i = 0; i < array.GetLength(0); i++)
+    for (int i = 0; i < arrayDouble.GetLength(0); i++) 
     {
-        for (int j = 0; j < array.GetLength(1); j++)
+        for (int j = 0; j < arrayDouble.GetLength(1); j++) 
         {
-            array[i, j] = random.Next(-10, 10);
+            arrayDouble[i, j] = Convert.ToDouble(random.Next(-100, 100))/10; 
         }
     }
-    return array;
 }
-void Print2DIntArray(int[,] array)
+void Print2DDoubleArray(double[,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            Console.Write($" {array[i, j]}");
+            Console.Write($" {array[i,j]}");
         }
         Console.WriteLine();
     }
 }
-int[,] arrayInt = CreateRandomIntArray(m, n);
-Print2DIntArray(arrayInt);
+CreateRandomDoubleArray(m,n);
+Print2DDoubleArray(arrayDouble);
+
